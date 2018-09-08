@@ -1,5 +1,6 @@
 #!/bin/bash
-tput setaf 6
+tput setab 9
+tput setaf 4
 echo "                            _____                               "
 echo "                           |  ___|   _ _ __ _ __ _   _           "
 echo "                           | |_ | | | | '__| '__| | | |          "
@@ -11,4 +12,4 @@ echo "                           |  _ || | | | | |/ _  | |  _  |/ _  |"
 echo "                           | |_) | |_| | | | (_| | | | | | (_| |"
 echo "                           |____/|___,_|_|_||__,_|_|_| |_||__, |"
 echo "                                                          |___/"
-tput setaf 5
+tput setaf 0
