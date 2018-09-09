@@ -1,9 +1,9 @@
 #!/bin/bash
-clean
+clear
 seleccion=0
 while test $seleccion -ne 5
 do
-  clean
+  clear
   tput setab 9
   tput setaf 4
   echo "1. Reservar"
@@ -11,6 +11,7 @@ do
   echo "3. Iniciar evento"
   echo "4. Cambiar pin"
   echo "5. Cerrar sesion"
+  read seleccion
   case $seleccion in
     1) sh ../usuario/reserva.sh
     ;;
@@ -20,14 +21,14 @@ do
     ;;
     4) sh ../usuario/iniciarevento.sh
     ;;
-    5) clean
+    5) clear
     tput setab 2
     tput setaf 0
     echo "Ha cerrado la sesion"
     tput setaf 4
     tput setab 9
     ;;
-    *) clean
+    *) clear
     tput setab 1
     tput setaf 0
     echo "Ingrese una opcion valida"

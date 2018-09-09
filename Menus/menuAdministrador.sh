@@ -1,9 +1,9 @@
 #!/bin/bash
-clean
+clear
 seleccion=0
 while test $seleccion -ne 6
 do
-  clean
+  clear
   tput setab 9
   tput setaf 4
   echo "1. Ver denuncias"
@@ -12,6 +12,7 @@ do
   echo "4. Editar usuarios"
   echo "5. Editar reglamentos/ moneda"
   echo "6. Cerrar sesion"
+  read seleccion
   case $seleccion in
     1) sh ../admin/verdenuncias.sh
     ;;
@@ -23,14 +24,14 @@ do
     ;;
     5) sh ../admin/editarreglamentomoneda.sh
     ;;
-    6) clean
+    6) clear
     tput setab 2
     tput setaf 0
     echo "Ha cerrado la sesion"
     tput setaf 4
     tput setab 9
     ;;
-    *) clean
+    *) clear
     tput setab 1
     tput setaf 0
     echo "Ingrese una opcion valida"

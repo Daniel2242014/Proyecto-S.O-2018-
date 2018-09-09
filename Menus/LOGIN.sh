@@ -1,5 +1,8 @@
 #!/bin/bash
-clean
+usuario=1
+while test $usuario -ne -1 #Agusitn te puse un while para una prueba si queres eliminalo
+do
+clear
 tput setab 9
 tput setaf 4
 echo "                            _____                               "
@@ -21,6 +24,7 @@ read usuario
 echo "                   Pin:  "
 read pin
 tput setaf 4
-clean
+clear
 # CONFIGURAR LOGIN AGUSTIN 
-sh menuUser.sh
+sh menuAdministrador.sh
+done

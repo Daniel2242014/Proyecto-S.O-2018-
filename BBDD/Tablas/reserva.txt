@@ -1,0 +1,1 @@
+:numeroPuerta:numeroReserva:dia:mes:año:hora:minuto:
