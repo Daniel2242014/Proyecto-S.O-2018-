@@ -21,19 +21,21 @@ do
     ;;
     4) sh ../usuario/iniciarevento.sh
     ;;
-    5) clear
+    5)
     tput setab 2
     tput setaf 0
     echo "Ha cerrado la sesion"
     tput setaf 4
     tput setab 9
+    clear
     ;;
-    *) clear
+    *) 
     tput setab 1
     tput setaf 0
     echo "Ingrese una opcion valida"
     tput setaf 4
     tput setab 9
+    clear
     ;;
   esac
 done
