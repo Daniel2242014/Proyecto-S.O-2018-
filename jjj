@@ -1,0 +1,45 @@
+#!/bin/bash
+clear
+tput setab 7
+usuario=1
+while test $usuario -ne -1 #Agusitn te puse un while para una prueba si queres eliminalo
+do
+clear
+tput setaf 4
+tput cup 1 40
+echo "   _ _ _  "
+tput cup 2 40
+echo "  |  ___|   _ _ __ _ __ _   _           "
+tput cup 3 40
+echo "  | |_ | | | | '__| '__| | | |          "
+tput cup 4 40
+echo "  |  _|| |_| | |  | |  | |_| |          "
+tput cup 5 40
+echo "  |_|  |___,_|_|  |_|  |___, |          "
+tput cup 6 40
+echo "  ____        _ _     _|___/           "
+tput cup 7 40
+echo " | __ ) _   _(_) | __| (_)_ ___  __ _ "
+tput cup 8 40
+echo " |  _ || | | | | |/ _  | |  _  |/ _  |"
+tput cup 9 40
+echo " | |_) | |_| | | | (_| | | | | | (_| |"
+tput cup 10 40
+echo " |____/|___,_|_|_||__,_|_|_| |_||__, |"
+tput cup 11 40
+echo "                                |___/"
+tput cup 15 1
+tput setaf 0
+tput setaf 6
+echo "Ingrese Usuario:"
+tput cup 17 1
+echo "Pin:"
+tput cup 15
+read usuario
+tput cup 17 5
+read pin
+tput setaf 4
+clear
+# CONFIGURAR LOGIN AGUSTIN
+sh menuAdministrador.sh
+done
