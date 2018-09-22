@@ -80,34 +80,61 @@ done
 	tput setaf 3
 	tput cup 15 15
 	echo "Ocupado por limpieza"
-	largo=2
-	echo $datos
+	largo=1
+	horas=0
+	elementos=0
+	if test $(grep ":$dia:$mes:$anio:" ../BBDD/Tablas/reserva.txt|wc -l) -eq 0
+	then 
+		elementos=0
+	else
+		elementos=1
+		grep ":$dia:$mes:$anio:" ../BBDD/Tablas/reserva.txt > ../BBDD/DatosTemporales/tempReserba.txt
+	fi
+	
 	for var in $(seq 0 1 18)
 	do	
-			
+		if test $[$var+7] -lt 24
+		then
+			horas=$[$var+7]
+		else	
+			horas=$[$var-17]
+		fi		
 		
 		for var2 in $(seq 0 1 3)
 		do		
-						
-			tput setab 2							
+			let largo=$largo+1
+			tput setab 2				
+			if test $elementos -eq 1 
+			then
+				for var3 in $(grep ":$dia:$mes:$anio:" ../BBDD/Tablas/reserva.txt)
+				do	
+					duracion=$(grep "$var3" ../BBDD/DatosTemporales/tempReserba.txt|cut -d: -f9)
+					horaInicio=$(grep "$var3" ../BBDD/DatosTemporales/tempReserba.txt|cut -d: -f7)
+					minutoInicio=$(grep "$var3" ../BBDD/DatosTemporales/tempReserba.txt|cut -d: -f8)
+					tput cup 22 1 
+					echo "$horas $duracion $horaInicio $minutoInicio" 					
+					if (test $horas -lt $[$horaInicio+$duracion]||(test $horas -le $[$horaInicio+$duracion] && test $[$var2*15] -le $minutoInicio))&&(test $horas -gt $horaInicio || (test $horas  -ge $horaInicio && test $[$var2*15] -ge $minutoInicio))  
+					then 
+						tput setab 1						
+					fi
+	
+				done									
+			fi			
 			tput cup 18 $largo			
 			echo " "
 			tput cup 19 $largo			
 			echo " "
-			let largo=$largo+1
+			
 			
 		done
 			
 		tput setaf 8
 		tput setab 7	
 		tput cup 20 $[$largo-4]
-		if test $[$var+7] -lt 24
-		then
-			echo "$[$var+7]"
-		else	
-			echo "$[$var-17]"
-		fi	
+		echo "$horas"
+		
 	done
+	
 	tput setab 7
 	tput setaf 8
 	tput cup 20 $[$largo]
