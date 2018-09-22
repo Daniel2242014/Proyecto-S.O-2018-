@@ -24,7 +24,10 @@ read usuario
 echo "                   Pin:  "
 read pin
 tput setaf 4
+echo $usuario>../BBDD/DatosTemporales/temp1.txt
+# AGUSTIN, VOY A GUARDAR EL NOMBRE DEL USUARIO EN UNA ARCHIVO TEM1 PARA PODER TRABAJAR EN EL 
+# REGISTRO, CUANDO EL LOGIN ESTE FUNCIONANDO VAS A TENER QUE HACER LO MISMO, PERO CON USUARIO #VERIFICADO 
 clear
 # CONFIGURAR LOGIN AGUSTIN 
-sh menuAdministrador.sh
+sh menuUsuario.sh
 done
