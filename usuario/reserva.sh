@@ -113,31 +113,42 @@ done
 					minutoInicio=$(grep "$var3" ../BBDD/DatosTemporales/tempReserba.txt|cut -d: -f8)
 					tput cup 22 1 
 					echo "$horas $duracion $horaInicio $minutoInicio" 					
-					if (test $horas -lt $[$horaInicio+$duracion]||(test $horas -le $[$horaInicio+$duracion] && test $[$var2*15] -le $minutoInicio))&&(test $horas -gt $horaInicio || (test $horas  -ge $horaInicio && test $[$var2*15] -ge $minutoInicio))  
+					if (test $horas -lt $[$horaInicio+$duracion]||(test $horas -le $[$horaInicio+$duracion] && test $[$var2*15] -lt $minutoInicio))&&(test $horas -gt $horaInicio || (test $horas  -ge $horaInicio && test $[$var2*15] -ge $minutoInicio))  
 					then 
 						tput setab 1						
 					fi
 	
 				done									
 			fi			
+			tput setaf 8			
 			tput cup 18 $largo			
-			echo " "
+			if test $var2 -eq 0
+			then 
+				echo "|"			
+			else
+				echo " "
+			fi			
 			tput cup 19 $largo			
-			echo " "
+			if test $var2 -eq 0
+			then 
+				echo "|"			
+			else
+				echo " "
+			fi
 			
 			
 		done
 			
 		tput setaf 8
 		tput setab 7	
-		tput cup 20 $[$largo-4]
+		tput cup 20 $[$largo-3]
 		echo "$horas"
 		
 	done
 	
 	tput setab 7
 	tput setaf 8
-	tput cup 20 $[$largo]
+	tput cup 20 $[$largo+1]
 	echo "$[$var-16]"
 	
 	
