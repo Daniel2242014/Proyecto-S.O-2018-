@@ -83,6 +83,8 @@ done
 	largo=1
 	horas=0
 	elementos=0
+	contadorAmarillas=0
+	conta=0
 	if test $(grep ":$dia:$mes:$anio:" ../BBDD/Tablas/reserva.txt|wc -l) -eq 0
 	then 
 		elementos=0
@@ -103,7 +105,8 @@ done
 		for var2 in $(seq 0 1 3)
 		do		
 			let largo=$largo+1
-			tput setab 2				
+			tput setab 2	
+			conta=1			
 			if test $elementos -eq 1 
 			then
 				for var3 in $(grep ":$dia:$mes:$anio:" ../BBDD/Tablas/reserva.txt)
@@ -113,9 +116,19 @@ done
 					minutoInicio=$(grep "$var3" ../BBDD/DatosTemporales/tempReserba.txt|cut -d: -f8)
 					tput cup 22 1 
 					echo "$horas $duracion $horaInicio $minutoInicio" 					
-					if (test $horas -lt $[$horaInicio+$duracion]||(test $horas -le $[$horaInicio+$duracion] && test $[$var2*15] -lt $minutoInicio))&&(test $horas -gt $horaInicio || (test $horas  -ge $horaInicio && test $[$var2*15] -ge $minutoInicio))  
+		
+					if ((test $horas -lt $[$horaInicio+$duracion]||(test $horas -eq $[$horaInicio+$duracion]&& test $minutoInicio -eq 0 && test $var2 -eq 0))||(test $horas -le $[$horaInicio+$duracion] && test $[$var2*15] -lt $minutoInicio))&&(test $horas -gt $horaInicio || (test $horas  -ge $horaInicio && test $[$var2*15] -ge $minutoInicio)) 
 					then 
-						tput setab 1						
+						tput setab 1 	
+						contadorAmarillas=4;
+						conta=0	
+					else
+						if test $contadorAmarillas -gt 0 && test $conta -eq 1
+						then 
+							tput setab 3 
+							let contadorAmarillas=$contadorAmarillas-1
+							conta=0
+						fi 									
 					fi
 	
 				done									
@@ -133,7 +146,7 @@ done
 			then 
 				echo "|"			
 			else
-				echo " "
+				echo "-"
 			fi
 			
 			
