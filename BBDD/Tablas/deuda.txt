@@ -1,0 +1,1 @@
+:codFactura:numPuerta:pagosRestantes:Monto
