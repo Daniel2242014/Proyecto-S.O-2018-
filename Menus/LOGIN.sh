@@ -5,17 +5,24 @@ do
 clear
 tput setab 9
 tput setaf 4
-echo "                            _____                               "
-echo "                           |  ___|   _ _ __ _ __ _   _           "
-echo "                           | |_ | | | | '__| '__| | | |          "
-echo "                           |  _|| |_| | |  | |  | |_| |          "
-echo "                           |_|  |___,_|_|  |_|  |___, |          "
-echo "                            ____        _ _     _|___/           "
-echo "                           | __ ) _   _(_) | __| (_)_ ___  __ _ "
-echo "                           |  _ || | | | | |/ _  | |  _  |/ _  |"
-echo "                           | |_) | |_| | | | (_| | | | | | (_| |"
-echo "                           |____/|___,_|_|_||__,_|_|_| |_||__, |"
-echo "                                                          |___/"
+echo "																		        ______________"
+echo "																		        |XXXXXXXXXXXX|"
+echo "																		        |X    XX    x|"
+echo "																		        |X    XX    x|"
+echo "																		________|X___XXXXXXXX|"
+echo "																		|XXXXXXXXXXX| XX    X|"
+echo "																		|X   XXX   X| XX    X|"
+echo "							 _____                                  	|X   XXX   X|XXXXXXXX|"
+echo "							|  ___|   _ _ __ _ __ _   _             	|XXXXXXXXXXX| XX    X|"
+echo "							| |_ | | | | '__| '__| | | | 			    |X   XXX   X| XX    X|"
+echo "							|  _|| |_| | |  | |  | |_| |				|X   XXX   X|XXXXXXXX|"
+echo "							|_|  |___,_|_|  |_|  |___, |                |XXXXXXXXXXX| XX    X|"
+echo "							 ____        _ _     _|___/              	|X   XXX   X| XX    X|"
+echo "							| __ ) _   _(_) | __| (_)_ ___  __ _ 		|X   XXX   X|XXXXXXXX|"
+echo "							|  _ || | | | | |/ _  | |  _  |/ _  |		|XXXXXXXXXXX|XXXXXXXX|"
+echo "							| |_) | |_| | | | (_| | | | | | (_| |		|X|   |   |X|  |  |XX|"
+echo "							|____/|___,_|_|_||__,_|_|_| |_||__, |		|X|   |   |X|  |  |XX|"
+echo "							                               |___/		|X|   |   |X|  |  |XX|"
 tput setaf 0
 
 tput setaf 6
