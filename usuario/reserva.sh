@@ -1,4 +1,7 @@
 #!/bin/bash
+selecion=1
+while test $selecion -eq 1 2> /dev/null
+do
 tput setab 7
 tput setaf 8
 clear
@@ -16,9 +19,8 @@ tput cup 6 50
 echo "Minuto:"
 tput cup 8 50
 echo "Duracion (N° horas):"
-selecion=1
-while test $selecion -eq 1 2> /dev/null
-do
+
+
 	tput setaf 8
 	tput cup 4 8
 	read anio
@@ -28,7 +30,7 @@ do
 	read dia
 	
 	tput setaf 7
-	if cal $dia $mes $anio 2> /dev/null && test $anio -ge $(date +%Y) && ((test $mes -eq $(date +%m) && test $dia -ge $(date +%d))|| test $mes -gt $(date +%m))
+	if cal $dia $mes $anio 2> /dev/null && (test $anio -gt $(date +%Y) || (test $anio -eq $(date +%Y) && ((test $mes -ge $(date +%m) && test $dia -ge $(date +%d))|| test $mes -gt $(date +%m))))
 	then
 		tput cup 11 22		
 		tput setab 1	
