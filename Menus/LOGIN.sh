@@ -1,7 +1,6 @@
 #!/bin/bash
+tput sgr 0
 clear
-tput setab 0
-tput setaf 4
 echo -e "                                                                 \e[0;90m____________"
 echo -e "                                                                \e[0;90m|\e[0;35mXXXXXXXXXXXX\e[0;90m|"
 echo -e "                                                                \e[0;90m|\e[0;35mX    XX    x\e[0;90m|"
@@ -22,26 +21,26 @@ echo -e "              \e[0;34;1m|____/|___,_|_|_||__,_|_|_| |_||__, |     \e[0;
 echo -e "              \e[0;34;1m                               |___/      \e[0;90m|\e[0;31mX\e[0;90m|   |   |\e[0;31mX\e[0;90m|  |  |\e[0;35mXX\e[0;90m|"
 tput setaf 6
 tput cup 20 
-echo "Nº Apartamento: "
-tput cup 20 16
-read usuario
+echo "Nro Apartamento:"
+tput cup 20 17
+read dpto
 tput cup 21
-echo -e "Pin: "
-tput cup 21 5
+echo "Clave:"
+tput cup 21 7
 read -s pin
-pinencrypt=`echo -n $pin | base64`
+pinencrypt=`echo $pin| base64`
 tput setaf 4
-if test `grep ":$usuario:$pinencrypt:" ../BBDD/Tablas/datosLogin.txt | cut -d: -f1,2`
+if test `grep ":$dpto:$pinencrypt:" ../BBDD/Tablas/datosLogin.txt| wc -l` -eq 1
 then	
-	echo $usuario>../BBDD/DatosTemporales/temp1.txt
-	clear
+	echo $dpto> ../BBDD/DatosTemporales/temp1.txt
 	tput sgr 0
 	sh menuUsuario.sh
 else
 	tput setab 1
 	tput setaf 7
 	tput cup 23
-	echo -e "Apartamento o contraseña incorrectos"
+	echo -e "Apartamento o clave incorrectos"
+	tput cup 23 31
 	read -s pause
 fi
 tput sgr 0

@@ -24,7 +24,9 @@ do
     ;;
     5) sh ../admin/editarreglamentomoneda.sh
     ;;
-    6) clear
+    6) rm ../BBDD/DatosTemporales/temp1.txt
+    touch ../BBDD/DatosTemporales/temp1.txt
+    clear
     tput setab 2
     tput setaf 0
     echo "Ha cerrado la sesion"
