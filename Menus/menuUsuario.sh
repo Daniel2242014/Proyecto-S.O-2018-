@@ -6,7 +6,7 @@ clear
 echo "1. Reservar"
 echo "2. Denunciar"
 echo "3. Iniciar evento"
-echo "4. Cambiar pin"
+echo "4. Cambiar clave"
 echo "5. Cerrar sesion"
 read seleccion
 case $seleccion in
