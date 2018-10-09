@@ -2,6 +2,7 @@
 tput sgr 0
 tput setab 7
 tput setaf 4
+tput civis
 clear
 echo "1. Reservar"
 echo "2. Denunciar"
@@ -11,7 +12,7 @@ echo "5. Cerrar sesion"
 read seleccion
 case $seleccion in
   1)
-    tput sgr 0 
+    tput sgr 0
     sh ../usuario/reserva.sh
   ;;
   2)
