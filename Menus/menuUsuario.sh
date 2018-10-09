@@ -13,18 +13,22 @@ read seleccion
 case $seleccion in
   1)
     tput sgr 0
+    tput cnorm
     sh ../usuario/reserva.sh
   ;;
   2)
     tput sgr 0 
+    tput cnorm
     sh ../usuario/denuncias.sh
   ;;
   3)
     tput sgr 0
+    tput cnorm
     sh ../usuario/iniciarevento.sh
   ;;
   4)
     tput sgr 0
+    tput cnorm
     sh ../usuario/cambiarpass.sh
   ;;
   5)
@@ -36,6 +40,7 @@ case $seleccion in
     echo "Ha cerrado la sesion"
     read -s pause
     tput sgr 0
+    tput cnorm
     sh ../Menus/LOGIN.sh 
     clear
   ;;
