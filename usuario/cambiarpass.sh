@@ -14,6 +14,17 @@ then
 	echo -e "Ingrese nueva clave:"
 	tput cup 0 20
 	read -s newkey
+	if test -z $newkey
+	then
+		tput sgr 0
+		tput setaf 0
+		tput setab 1
+		clear
+		echo "Escriba una clave"
+		read -s pause
+		tput sgr 0
+		sh menuUsuario.sh
+	fi
 	newkeyencrypt=`echo $newkey| base64`
 	clear
 	echo -e "Ingrese clave nuevamente:"
