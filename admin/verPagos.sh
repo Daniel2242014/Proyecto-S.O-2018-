@@ -21,11 +21,12 @@ do
         numMonto=$(grep "$var" ../BBDD/Tablas/pagos.txt| cut -d ":" -f3)
         numMes=$(grep "$var" ../BBDD/Tablas/pagos.txt| cut -d ":" -f4)
         numAnio=$(grep "$var" ../BBDD/Tablas/pagos.txt| cut -d ":" -f5)
-        echo "-------------------------------"
-        echo "Numero de Puerta: $numPuerta"
-        echo "Monto: $numMonto"
-        echo "Fecha de pago: $numMes/$numAnio"
-        echo "-------------------------------"
+        echo -e "\e[30m-------------------------------"
+        echo -e "\e[34mNumero de Puerta: \e[32m$numPuerta"
+        echo -e "\e[34mMonto: \e[32m$numMonto"
+        echo -e "\e[34mFecha de pago: \e[32m$numMes/$numAnio"
+        echo -e "\e[30m-------------------------------"
+
 done
 read -s pause
 tput sgr 0
