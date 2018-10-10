@@ -262,7 +262,6 @@ done
 
 if test $validacion -eq 1
 then 
-	
 	echo :$(cat ../BBDD/DatosTemporales/temp1.txt):$[$(tail -n1 ../BBDD/Tablas/reserva.txt|cut -d: -f3)+1]:$dia:$mes:$anio:$hora:$minuto:$duracion:  >>../BBDD/Tablas/reserva.txt
 else
 	echo "Adios"

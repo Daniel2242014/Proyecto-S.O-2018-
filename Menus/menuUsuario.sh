@@ -2,28 +2,33 @@
 tput sgr 0
 tput setab 7
 tput setaf 4
+tput civis
 clear
 echo "1. Reservar"
 echo "2. Denunciar"
 echo "3. Iniciar evento"
-echo "4. Cambiar pin"
+echo "4. Cambiar clave"
 echo "5. Cerrar sesion"
 read seleccion
 case $seleccion in
   1)
-    tput sgr 0 
+    tput sgr 0
+    tput cnorm
     sh ../usuario/reserva.sh
   ;;
   2)
     tput sgr 0 
+    tput cnorm
     sh ../usuario/denuncias.sh
   ;;
   3)
     tput sgr 0
+    tput cnorm
     sh ../usuario/iniciarevento.sh
   ;;
   4)
     tput sgr 0
+    tput cnorm
     sh ../usuario/cambiarpass.sh
   ;;
   5)
@@ -35,6 +40,7 @@ case $seleccion in
     echo "Ha cerrado la sesion"
     read -s pause
     tput sgr 0
+    tput cnorm
     sh ../Menus/LOGIN.sh 
     clear
   ;;
