@@ -1,1 +1,1 @@
-:codFactura:numPuerta:pagosRestantes:Monto
+:codFactura:numPuerta:pagosRestantes:Monto:s21

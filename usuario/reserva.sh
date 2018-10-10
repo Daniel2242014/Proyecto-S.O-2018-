@@ -82,7 +82,8 @@ done
 	conta=0
 	if test $(grep ":$dia:$mes:$anio:" ../BBDD/Tablas/reserva.txt|wc -l) -eq 0
 	then 
-		elementos=0
+		elementos=0 > ../BBDD/DatosTemporales/tempReserba.txt
+		echo "" 
 	else
 		elementos=1
 		grep ":$dia:$mes:$anio:" ../BBDD/Tablas/reserva.txt > ../BBDD/DatosTemporales/tempReserba.txt
@@ -173,75 +174,102 @@ echo "                                                                          
 done
 
 validacion=0
+
 while test $validacion -eq 0
 do
-tput cup 4 56
-echo "      "
-tput cup 6 58
-echo "      "
-tput cup 8 72
-echo "      "
+	tput cup 4 56
+	echo "      "
+	tput cup 6 58
+	echo "      "
+	tput cup 8 72
+	echo "      "
 
-tput cup 4 56
-read hora
-tput cup 6 58
-read minuto
-tput cup 8 72
-read duracion
+	tput cup 4 56
+	read hora
+	tput cup 6 58
+	read minuto
+	tput cup 8 72
+	read duracion
  
-horaMax=26
-minMax=0
+	horaMax=26
+	minMax=0
 
-if test $hora -ge 7 && test $hora -le 2 && test $minuto -ge 0 && test $minuto -lt 60 && test $duracion -gt 0 && test $duracion -le 6 
-then
-	validacion=1
-fi
+	if ((test $hora -ge 7 2> /dev/null && test $hora -le 23 2> /dev/null)||(test $hora -ge 0 2> /dev/null && test $hora -le 2 2> /dev/null)) && test $minuto -ge 0 2> /dev/null && test $minuto -lt 60 2> /dev/null && test $duracion -gt 0 2> /dev/null && test $duracion -le 6 2> /dev/null 
+	then
+		validacion=1
+	fi
 
-if test $hora -le 2
-then 
-	let hora=$hora+24
-fi
-
-if test $(cat ../BBDD/DatosTemporales/tempReserba.txt|wc -l) -gt 0 && test $validacion -eq 1
-then
-	for var4 in $(cat ../BBDD/DatosTemporales/tempReserba.txt)
-	do
-		inicio=$(grep "$var4" ../BBDD/DatosTemporales/tempReserba.txt |cut -d: -f7)
-		if test $inicio -le 2
-		then 
-			let inicio=$inicio+24
-		fi
-		inicioMin=$(grep "$var4" ../BBDD/DatosTemporales/tempReserba.txt |cut -d: -f8)	
-		duracion2=$(grep "$var4" ../BBDD/DatosTemporales/tempReserba.txt |cut -d: -f9)
-		let fin=$hora+$duracion+1
-		let fin2=$inicio+$duracion2+1
-		
-		
-		if (test $inicio -lt $horaMax || (test $inicio -eq $horaMax && test $inicioMin -lt $minMax)) && (test $inicio -gt $hora || (test $hora -eq $inicio && test $inicioMin -gt $minuto )) 
-		then 
-			horaMax=$inicio
-			minMax=$inicioMin
-		fi
-
-		if ((test $hora -gt $inicio || (test $hora -eq $inicio && test $minuto -gt $inicioMin)) && (test $hora -lt $fin2 || (test $hora -eq $fin2 && test $minuto -lt $inicioMin))) 
-		then
-			validacion=0
-		else
-			if test $fin -gt $horaMax || (test $fin -eq $horaMax && test $minuto -gt $minMax)
-			then
-				validacion=0	
-			fi
-			echo ""
-		fi
+	if test $hora -le 2
+	then 
+		let hora=$hora+24
+	fi
+	echo $validacion
 	
-	done
-fi	
-tput cup 11 22	
-tput setab 1
-tput setaf 7
-echo "ESTADO $validacion / $horaMax $minMax"
-read ff
+	if test $(cat ../BBDD/DatosTemporales/tempReserba.txt|wc -l) -gt 0 && test $validacion -eq 1
+	then
+		for var4 in $(cat ../BBDD/DatosTemporales/tempReserba.txt)
+		do
+			inicio=$(grep "$var4" ../BBDD/DatosTemporales/tempReserba.txt |cut -d: -f7)
+			if test $inicio -le 2
+			then 
+				let inicio=$inicio+24
+			fi
+			inicioMin=$(grep "$var4" ../BBDD/DatosTemporales/tempReserba.txt |cut -d: -f8)	
+			duracion2=$(grep "$var4" ../BBDD/DatosTemporales/tempReserba.txt |cut -d: -f9)
+			let fin=$hora+$duracion+1
+			let fin2=$inicio+$duracion2+1
+		
+		
+			if (test $inicio -lt $horaMax || (test $inicio -eq $horaMax && test $inicioMin -lt $minMax)) && (test $inicio -gt $hora || (test $hora -eq $inicio && test $inicioMin -gt $minuto )) 
+			then 
+				horaMax=$inicio
+				minMax=$inicioMin
+			fi
+
+			if ((test $hora -gt $inicio || (test $hora -eq $inicio && test $minuto -gt $inicioMin)) && (test $hora -lt $fin2 || (test $hora -eq $fin2 && test $minuto -lt $inicioMin))) 
+			then
+				validacion=0
+			else
+				if test $fin -gt $horaMax || (test $fin -eq $horaMax && test $minuto -gt $minMax)
+				then
+					validacion=0	
+				fi
+				echo ""
+			fi
+	
+		done
+	fi	
+	tput cup 11 10	
+	tput setab 1
+	tput setaf 7
+	if test $validacion -eq 0
+	then
+		echo "Datos incorrectos"
+		tput setab 7		
+		tput setaf 7
+		read null
+	else
+		echo "Datos correctos, ¿Confirma la hora?(0=no, 1=si 2=volver a empezar)"
+		tput setab 7		
+		tput setaf 7		
+		read validacion
+	fi 
+	tput setab 7		
+	tput setaf 8
+	tput cup 11 10
+	echo "                                                "
 done
+
+if test $validacion -eq 1
+then 
+	
+	echo :$(cat ../BBDD/DatosTemporales/temp1.txt):$[$(tail -n1 ../BBDD/Tablas/reserva.txt|cut -d: -f3)+1]:$dia:$mes:$anio:$hora:$minuto:$duracion:  >>../BBDD/Tablas/reserva.txt
+else
+	echo "Adios"
+fi
+
+
+
 
 	
 	
