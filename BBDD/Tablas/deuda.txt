@@ -1,1 +1,4 @@
-:codFactura:numPuerta:pagosRestantes:Monto:s21
+
+:codeFactura:numPuerta:pagoRestantes:monto:cuotas:sigienteMes:sigienteAño:
+:1:704:0:20000:10:6:2018:
+:2:704:1:900:3:10:2018:
