@@ -262,7 +262,42 @@ done
 
 if test $validacion -eq 1
 then 
-	echo :$(cat ../BBDD/DatosTemporales/temp1.txt):$[$(tail -n1 ../BBDD/Tablas/reserva.txt|cut -d: -f3)+1]:$dia:$mes:$anio:$hora:$minuto:$duracion:  >>../BBDD/Tablas/reserva.txt
+	sh ../admin/actualizarpagos.sh
+	numPuerta=$(cat ../BBDD/DatosTemporales/temp1.txt)
+	if test $(grep $numPuerta ../BBDD/Tablas/usuario.txt | cut -d: -f5) == "NO"
+	then
+		
+		tput cup 11 5	
+		tput setab 1
+		tput setaf 7
+		echo "El primer uso del salon es grais, pulse cualquier tecla para continuar"
+		read fff
+		tput cup 11 5	
+		tput setab 7
+		echo "                                                                      "
+		echo "" > ../BBDD/DatosTemporales/temp2.txt
+		for var6 in $(cat ../BBDD/Tablas/usuario.txt)
+		do
+			if test $(grep $var6 ../BBDD/Tablas/usuario.txt| cut -d: -f4) -eq $numPuerta
+			then
+				echo :$(grep $var6 ../BBDD/Tablas/usuario.txt| cut -d: -f2):$(grep $var6 ../BBDD/Tablas/usuario.txt| cut -d: -f3):$(grep $var6 ../BBDD/Tablas/usuario.txt| cut -d: -f4):SI:$(grep $var6 ../BBDD/Tablas/usuario.txt| cut -d: -f6):$(grep $var6 ../BBDD/Tablas/usuario.txt| cut -d: -f7):$(grep $var6 ../BBDD/Tablas/usuario.txt| cut -d: -f8) >> ../BBDD/DatosTemporales/temp2.txt
+			else	
+				echo $var6 >> ../BBDD/DatosTemporales/temp2.txt
+			fi
+		done
+		cat ../BBDD/DatosTemporales/temp2.txt >../BBDD/Tablas/usuario.txt
+	else
+		echo uuu
+		#VERIFICAR SI TIENE DEUDA Y CARGRA DEUDA
+	fi	
+
+	echo :$numPuerta:$[$(tail -n1 ../BBDD/Tablas/reserva.txt| cut -d: -f3)+1]:$dia:$mes:$anio:$hora:$minuto:$duracion:  >>../BBDD/Tablas/reserva.txt
+	tput cup 11 20	
+	tput setab 1
+	tput setaf 7
+	echo "Reserva registrada " 
+	read fff
+	
 else
 	echo "Adios"
 fi

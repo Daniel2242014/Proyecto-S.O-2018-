@@ -1,4 +1,7 @@
 #!/bin/bash
+seleccion=0
+while test $seleccion -ne 5
+do
 tput sgr 0
 tput setab 7
 tput setaf 4
@@ -14,7 +17,7 @@ case $seleccion in
   1)
     tput sgr 0
     tput cnorm
-    sh ../usuario/reserva.sh
+    sh menuReservas.sh
   ;;
   2)
     tput sgr 0 
@@ -41,7 +44,6 @@ case $seleccion in
     read -s pause
     tput sgr 0
     tput cnorm
-    sh ../Menus/LOGIN.sh 
     clear
   ;;
   *) 
@@ -50,9 +52,8 @@ case $seleccion in
     clear
     echo "Ingrese una opcion valida"
     read -s pause
-    sh ../Menus/menuUsuario.sh
     tput sgr 0
     clear
   ;;
 esac
-
+done

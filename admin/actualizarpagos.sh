@@ -54,7 +54,7 @@ do
   			mesAnterior=$[$mesAnterior-12]
 		fi
 
-		echo :$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f2):$numPuerta:$[$mesAPagar-$mesesAPagar]:$montoAPagar:$cuotas:$mesAnterior:$aaa: >> ../BBDD/DatosTemporales/tempActualisar2
+		echo :$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f2):$numPuerta:$[$mesAPagar-$mesesAPagar]:$montoAPagar:$cuotas:$mesAnterior:$aaa:$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f9):$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f10): >> ../BBDD/DatosTemporales/tempActualisar2
 	
 	else
 		echo $var1 >>../BBDD/DatosTemporales/tempActualisar2
