@@ -1,4 +1,7 @@
 #!/bin/bash
+dia=0
+mes=0
+anio=0
 selecion=1
 while test $selecion -eq 1 2> /dev/null
 do
@@ -287,8 +290,89 @@ then
 		done
 		cat ../BBDD/DatosTemporales/temp2.txt >../BBDD/Tablas/usuario.txt
 	else
-		echo uuu
-		#VERIFICAR SI TIENE DEUDA Y CARGRA DEUDA
+		if test $(grep $numPuerta ../BBDD/Tablas/usuario.txt|cut -d: -f6) -gt 0
+		then
+			tput cup 11 5	
+			tput setab 1
+			tput setaf 7
+			echo "Ustdes tiene un deuda de $(grep $numPuerta ../BBDD/Tablas/usuario.txt|cut -d: -f6), por lo tanto solo puede reservar si pága ahora "
+			tput cup 11 5	
+			tput setab 7
+			tput setaf 7
+			echo "                                                                                                            "
+			tput cup 11 25	
+			tput setab 1
+			tput setaf 7
+			echo "Pago completado"
+			tput cup 11 25	
+			tput setab 7
+			tput setaf 7
+			echo "               "
+
+		else
+			verificado=0
+			while test $verificado -eq 0
+			do 
+			verificado=1	
+			tput cup 11 10	
+			tput setab 1
+			tput setaf 7
+			echo "Lo pagara en contado o en cuotas? (0=contado, 1=en cuotas)"
+			tput cup 11 69	
+			tput setab 7
+			tput setaf 8			
+			read tipoPago
+			tput cup 11 10	
+			tput setab 7
+			tput setaf 7			
+			echo "                                                         "
+			
+			case $tipoPago in
+				0)
+				tput cup 11 25	
+				tput setab 1
+				tput setaf 7
+				echo "Pago completado"
+				tput cup 11 25	
+				tput setab 7
+				tput setaf 7
+				echo "               "	
+				;;
+			
+				1)	
+				tput cup 11 25	
+				tput setab 1
+				tput setaf 7
+				echo "Cuantas coutas "	
+				tput setab 7
+				tput setaf 8
+				read montoCuota
+				tput cup 11 25	
+				tput setab 7
+				tput setaf 7
+				echo "                       "
+				codeFactura=$(tail -n1 ../BBDD/Tablas/deuda.txt|cut -d: -f2)
+				# :codeFactura:numPuerta:pagoRestantes:monto:cuotas:sigienteMes:sigienteAño:codeReserva/codeDeuda:tipoCode(R=reserva/D=denuncias)
+				mes=$[$mes+1]
+				if test $mes -ge 13
+				then 
+					mes=1
+					anio=$[$anio+1]
+				fi
+				echo :$[$codeFactura+1]:$numPuerta:$montoCuota:900:$[$(date +%m)+1]:$mes:$anio:$[$(tail -n1 ../BBDD/Tablas/reserva.txt| cut -d: -f3)+1]:R >>../BBDD/Tablas/deuda.txt
+
+				;;
+			
+				*)
+				tput cup 20 10	
+				tput setab 1
+				tput setaf 7
+				echo "Entrada incorrecta"
+				verificado=0
+				;;
+			esac
+			done
+		fi
 	fi	
 
 	echo :$numPuerta:$[$(tail -n1 ../BBDD/Tablas/reserva.txt| cut -d: -f3)+1]:$dia:$mes:$anio:$hora:$minuto:$duracion:  >>../BBDD/Tablas/reserva.txt
