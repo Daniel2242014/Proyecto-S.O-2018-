@@ -8,12 +8,11 @@ do
         anioAnterior=$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f8)
 	mesAPagar=$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f4)
 
-	if test $mesAPagar -gt 0 2> /dev/null && ( test $anioAnterior -lt $(date +%Y) 2> /dev/null || (test $anioAnterior -eq $(date +%Y) 2> /dev/null && test $mesAnterior -lt $(date +%m) 2> /dev/null))
+	if test $mesAPagar -gt 0 2> /dev/null && (test $anioAnterior -lt $(date +%Y) 2> /dev/null || (test $anioAnterior -eq $(date +%Y) 2> /dev/null && test $mesAnterior -lt $(date +%m) 2> /dev/null))
 	then 	
 		if test $anioAnterior -lt $(date +%Y)
 		then 
 			mesesAPagar=$[ ( (12*( $(date +%Y)-$anioAnterior))-$mesAnterior) + $(date +%m)]
-			echo $mesesAPagar
 		else
 			let mesesAPagar=$(date +%m)-$mesAnterior
 		fi
@@ -29,7 +28,6 @@ do
 			mesesAPagar=$mesAPagar
 		fi
 		totalAPagar=$[$mesesAPagar * $[$montoAPagar/$cuotas]]
-		echo $totalAPagar
 		nuevoUsuario=$(echo $(grep $numPuerta ../BBDD/Tablas/usuario.txt | sed s/:$deudaAnterior:/:$[$deudaAnterior+$totalAPagar]:/g)) 	
 		rutaPRev=$(grep $numPuerta ../BBDD/Tablas/usuario.txt)	
                 contador=0		
@@ -56,7 +54,7 @@ do
 
 		echo :$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f2):$numPuerta:$[$mesAPagar-$mesesAPagar]:$montoAPagar:$cuotas:$mesAnterior:$aaa:$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f9):$(grep $var1 ../BBDD/Tablas/deuda.txt|cut -d: -f10): >> ../BBDD/DatosTemporales/tempActualisar2
 	
-	else
+	else		
 		echo $var1 >>../BBDD/DatosTemporales/tempActualisar2
 	fi
 

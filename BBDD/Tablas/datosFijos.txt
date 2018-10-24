@@ -1,7 +1,0 @@
-:ur:1073:
-:gastosComunes:2000:
-:costoSalon:900:
-:horaMax:2.00:
-:horaMin:7.00:
-:duracionMax:6.00:
-:tiempoLimpieza:1.00:

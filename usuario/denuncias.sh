@@ -1,4 +1,5 @@
 #/bin/bash
+clear
 echo "ingrese numero de denunciado:"
 tput cup 0 30
 read -n 3 denunciado

@@ -2,3 +2,10 @@
 :codeFactura:numPuerta:pagoRestantes:monto:cuotas:sigienteMes:sigienteAño:codeReserva/codeDeuda:tipoCode(R=reserva/D=denuncias)
 :1:704:1:900:10:10:2018:1:R:
 :2:704:1:900:3:10:2018:2:R:
+:3:704:0:900:5:3:2018:10:R:
+:4:704:2:900:2:10:2018:11:R:
+:5:704:5:900:5:12:2018:14:R:
+:6:704:5:900:5:12:2018:15:R:
+:7:704:2:900:2:12:2018:18:R:
+:8:704:4:900:4:12:2018:19:R:
+:9:704:4:900:4:12:2018:21:R:

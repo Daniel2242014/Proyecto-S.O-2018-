@@ -206,7 +206,6 @@ do
 	then 
 		let hora=$hora+24
 	fi
-	echo $validacion
 	
 	if test $(cat ../BBDD/DatosTemporales/tempReserba.txt|wc -l) -gt 0 && test $validacion -eq 1
 	then
@@ -260,7 +259,7 @@ do
 	tput setab 7		
 	tput setaf 8
 	tput cup 11 10
-	echo "                                                "
+	echo  "                                                                   "
 done
 
 if test $validacion -eq 1
@@ -292,15 +291,17 @@ then
 	else
 		if test $(grep $numPuerta ../BBDD/Tablas/usuario.txt|cut -d: -f6) -gt 0
 		then
-			tput cup 11 5	
+			tput cup 11 2	
 			tput setab 1
 			tput setaf 7
-			echo "Ustdes tiene un deuda de $(grep $numPuerta ../BBDD/Tablas/usuario.txt|cut -d: -f6), por lo tanto solo puede reservar si pága ahora "
+			echo "Al tener deuda debera pagar en contado el salon, toque cualuier tecla para continuar "
+			tput setaf 7			
+			read fff			
 			tput cup 11 5	
 			tput setab 7
-			tput setaf 7
-			echo "                                                                                                            "
-			tput cup 11 25	
+			tput setaf 7                          
+			echo "                                                                                      "
+			tput cup 11 2	
 			tput setab 1
 			tput setaf 7
 			echo "Pago completado"
@@ -325,7 +326,7 @@ then
 			tput cup 11 10	
 			tput setab 7
 			tput setaf 7			
-			echo "                                                         "
+			echo "                                                            "
 			
 			case $tipoPago in
 				0)
@@ -340,26 +341,40 @@ then
 				;;
 			
 				1)	
-				tput cup 11 25	
-				tput setab 1
-				tput setaf 7
-				echo "Cuantas coutas "	
-				tput setab 7
-				tput setaf 8
-				read montoCuota
-				tput cup 11 25	
-				tput setab 7
-				tput setaf 7
-				echo "                       "
+				verificadorNumCuota=0				
+				while test $verificadorNumCuota -eq 0
+				do
+					verificadorNumCuota=1
+					tput cup 11 25	
+					tput setab 1
+					tput setaf 7
+					echo "Cuantas coutas (DEL 1-6)"	
+					tput cup 11 51
+					tput setab 7
+					tput setaf 8
+					read montoCuota
+					tput cup 11 25	
+					tput setab 7
+					tput setaf 7
+					echo "                         "
+					if test $montoCuota -gt 6 || test $montoCuota -lt 1
+					then 
+						tput cup 11 25	
+						echo "Dato incorecto"
+						verificadorNumCuota=0
+					fi
+								
+				done 				
 				codeFactura=$(tail -n1 ../BBDD/Tablas/deuda.txt|cut -d: -f2)
 				# :codeFactura:numPuerta:pagoRestantes:monto:cuotas:sigienteMes:sigienteAño:codeReserva/codeDeuda:tipoCode(R=reserva/D=denuncias)
-				mes=$[$mes+1]
-				if test $mes -ge 13
+				mesS=$[$mes+1]
+				anioS=$anio
+				if test $mesS -ge 13
 				then 
-					mes=1
-					anio=$[$anio+1]
+					mesS=1
+					anioS=$[$anio+1]
 				fi
-				echo :$[$codeFactura+1]:$numPuerta:$montoCuota:900:$montoCuota:$[$(date +%m)+1]:$mes:$anio:$[$(tail -n1 ../BBDD/Tablas/reserva.txt| cut -d: -f3)+1]:R >>../BBDD/Tablas/deuda.txt
+				echo :$[$codeFactura+1]:$numPuerta:$montoCuota:900:$montoCuota:$mesS:$anioS:$[$(tail -n1 ../BBDD/Tablas/reserva.txt| cut -d: -f3)+1]:R: >>../BBDD/Tablas/deuda.txt
 
 				;;
 			
