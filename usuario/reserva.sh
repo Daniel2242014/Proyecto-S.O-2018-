@@ -359,7 +359,7 @@ then
 					mes=1
 					anio=$[$anio+1]
 				fi
-				echo :$[$codeFactura+1]:$numPuerta:$montoCuota:900:$[$(date +%m)+1]:$mes:$anio:$[$(tail -n1 ../BBDD/Tablas/reserva.txt| cut -d: -f3)+1]:R >>../BBDD/Tablas/deuda.txt
+				echo :$[$codeFactura+1]:$numPuerta:$montoCuota:900:$montoCuota:$[$(date +%m)+1]:$mes:$anio:$[$(tail -n1 ../BBDD/Tablas/reserva.txt| cut -d: -f3)+1]:R >>../BBDD/Tablas/deuda.txt
 
 				;;
 			

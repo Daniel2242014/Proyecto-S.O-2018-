@@ -1,1 +1,2 @@
-:nomDescripcion:numeroPuerta:numeroReserva:Costo:
+:numDenuncia:nomDescripcion:numeroPuerta:numeroReserva:Costo:
+
