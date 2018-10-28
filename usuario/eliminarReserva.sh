@@ -98,7 +98,7 @@ do
 
 					cat ../BBDD/DatosTemporales/tempEliminacion > ../BBDD/Tablas/reserva.txt
 					echo $(head -n1 ../BBDD/Tablas/deuda.txt )  > ../BBDD/DatosTemporales/tempEliminacion	
-					efectivo=2
+					efectivo=1
 
 					for var3 in $(cat ../BBDD/Tablas/deuda.txt)
 					do
