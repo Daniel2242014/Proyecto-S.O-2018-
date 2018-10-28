@@ -10,8 +10,7 @@ do
   echo "2. Actualizar pagos"
   echo "3. Ver pagos"
   echo "4. Editar usuarios"
-  echo "5. Editar reglamentos/ moneda"
-  echo "6. Cerrar sesion"
+  echo "5. Cerrar sesion"
   read seleccion
   case $seleccion in
     1) sh ../admin/verdenuncias.sh
@@ -22,9 +21,7 @@ do
     ;;
     4) sh ../admin/editarusers.sh
     ;;
-    5) sh ../admin/editarreglamentomoneda.sh
-    ;;
-    6) rm ../BBDD/DatosTemporales/temp1.txt
+    5) rm ../BBDD/DatosTemporales/temp1.txt
     touch ../BBDD/DatosTemporales/temp1.txt
     clear
     tput setab 2
