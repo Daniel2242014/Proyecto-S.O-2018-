@@ -1,38 +1,63 @@
 #/bin/bash
+tput sgr 0
+tput setab 7
+tput setaf 4
 clear
 echo "ingrese numero de denunciado:"
 tput cup 0 30
-read -n 3 denunciado
-touch ../BBDD/DatosTemporales/numPuertas.txt
-cut -d ":" -f 3 ../BBDD/Tablas/usuario.txt>>../BBDD/DatosTemporales/numPuertas.txt
+read denunciado 
 
-if test grep $denunciado ../BBDD/DatosTemporales/numPuertas.txt>dev/null
-then
-	
+#Ingreso denuncia descripcion >> carpeta denuncias
+if test $(grep ":$denunciado:" ../BBDD/Tablas/usuario.txt|wc -l) -eq 1 
+then	
+	tput cup 2 0
 	echo "ingrese una descripcion:"
-	tput cup 1 24
-	read $descripcion
-	numDenuncia=$(wc -l ../BBDD/Tablas/denuncias.txt)+1
+	tput cup 2 24
+	read descripcion
+	numDenuncia=$[$(cat ../Denuncia/noAutorizadas.txt|wc -l)+1]
+	echo $numDenuncia
 	clear
-	echo "Ingrese el anio:"
+	echo "Ingrese el dia:"
 	echo "Ingrese el mes:"
-	echo "Ingrese el dia"
-	tput cup 0 16
-	read $dia 
+	echo "Ingrese el año:"
+	
+	#Lee Fecha
+	tput cup 0 15
+	read dia 
 	tput cup 1 15
-	read $mes
+	read mes
 	tput cup 2 15
-	read $anio
-	grep $denunciado ../BBDD/Tablas/reserva.txt|grep $dia|grep $anio>>../BBDD/DatosTemporales/aux1.txt
-	numReserva=$(cut -d ":" -f 2 ../BBDD/DatosTemporales/aux1.txt)
-	echo ":$numDenuncia:$denunciado:$descripcion:$numReserva:">>../BBDD/Tablas/denuncias.txt
-	rm ../BBDD/DatosTemporales/numPuertas.txt
-	rm ../BBDD/DatosTemporales/aux1.txt
+	read anio
+
+	#Verifica Fecha
+
+	if cal $dia $mes $anio 2> /dev/null && ((test $anio -lt $(date +%Y)) || (test $anio -eq $(date +%Y) && ((test $mes -lt $(date +%m) && test $dia -lt $(date +%d))|| test $mes -lt $(date +%m))))
+	then
+		echo "valido" 
+	else
+		echo "Fecha No Valida, presione enter"
+		read dklbhag
+		exit		
+	fi
+	
+	#Escribe Datos
+	clear
+	echo $(grep $denunciado ../BBDD/Tablas/reserva.txt|grep $dia|grep $anio)>>../BBDD/DatosTemporales/temp1.txt
+	numDenunciante=$(cat ../BBDD/DatosTemporales/1.txt)
+	
+
+	echo ":$numDenuncia:$denunciado:$descripcion:$numDenunciante:">>../Denuncia/noAutorizadas.txt
+	echo "Presione enter para continuar"
+	read yyyyy
+	rm ../BBDD/DatosTemporales/aux1.txt 
+	
 
 else 
-	echo "Numero no valido"
-	rm ../BBDD/DatosTemporales/numPuertas.txt
-	
-	sh menuUsuario.sh
+	clear
+	echo "Numero no valido, presione enter"
+	read ighlkdajfñd
+	exit
 fi
-sh menuUsuario.sh
+exit
+
+
