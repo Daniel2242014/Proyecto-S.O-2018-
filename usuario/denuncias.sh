@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 tput sgr 0
 tput setab 7
 tput setaf 4
