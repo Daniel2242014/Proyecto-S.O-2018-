@@ -52,6 +52,7 @@ case $seleccion in
     echo "Ingrese una opcion valida"
     read -s pause
     tput sgr 0
+    seleccion=3
     clear
   ;;
 esac
