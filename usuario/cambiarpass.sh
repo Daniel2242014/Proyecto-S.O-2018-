@@ -51,7 +51,7 @@ then
 		read -s pause
 		clear
 		tput sgr 0
-		sh menuUsuario.sh
+		#sh menuUsuario.sh
 	else
 		tput sgr 0
 		tput setaf 0
@@ -60,7 +60,7 @@ then
 		echo "Las claves no coinciden"
 		read -s pause
 		tput sgr 0
-		sh menuUsuario.sh
+		#sh menuUsuario.sh
 	fi
 else
 	tput sgr 0
@@ -72,6 +72,4 @@ else
 	read -s pause
 	clear
 	tput sgr 0
-	sh menuUsuario.sh
 fi
-done

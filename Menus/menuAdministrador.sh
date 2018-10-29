@@ -1,27 +1,26 @@
 #!/bin/bash
+tput setab 7
+tput setaf 0
 clear
 seleccion=0
-while test $seleccion -ne 6
+while test $seleccion -ne 4
 do
   clear
   tput setab 9
   tput setaf 4
   echo "1. Ver denuncias"
   echo "2. Actualizar pagos"
-  echo "3. Ver pagos"
-  echo "4. Editar usuarios"
-  echo "5. Cerrar sesion"
+  echo "3. Editar usuarios"
+  echo "4. Cerrar sesion"
   read seleccion
   case $seleccion in
     1) sh ../admin/verdenuncias.sh
     ;;
-    2) sh ../admin/verpagos.sh
+    2) sh ../admin/verPagos.sh
     ;;
-    3) sh ../admin/actualizarpagos.sh
+    3) sh ../admin/editarusers.sh
     ;;
-    4) sh ../admin/editarusers.sh
-    ;;
-    5) rm ../BBDD/DatosTemporales/temp1.txt
+    4) rm ../BBDD/DatosTemporales/temp1.txt
     touch ../BBDD/DatosTemporales/temp1.txt
     clear
     tput setab 2

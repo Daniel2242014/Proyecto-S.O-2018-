@@ -34,7 +34,12 @@ if test `grep ":$dpto:$pinencrypt:" ../BBDD/Tablas/datosLogin.txt| wc -l` -eq 1
 then	
 	echo $dpto> ../BBDD/DatosTemporales/temp1.txt
 	tput sgr 0
-	sh menuUsuario.sh
+	if test $dpto -eq 0
+	then
+		sh menuAdministrador.sh
+	else
+		sh menuUsuario.sh
+	fi
 else
 	tput setab 1
 	tput setaf 7
