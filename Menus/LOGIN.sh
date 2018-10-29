@@ -1,4 +1,7 @@
 #!/bin/bash
+verif=0
+while test $verif -eq 0
+do
 tput sgr 0
 clear
 echo -e "                                                                 \e[0;90m____________"
@@ -49,4 +52,4 @@ else
 	read -s pause
 fi
 tput sgr 0
-sh ../Menus/LOGIN.sh
+done
