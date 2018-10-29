@@ -38,7 +38,7 @@ case $seleccion in
 		tput cnorm
 	    	tput sgr 0
 		clear
-		sh LOGIN.sh
+		exit
 	;;
 	*)
 		tput setab 1
@@ -49,7 +49,6 @@ case $seleccion in
 		tput cnorm
 		tput sgr 0
 		clear
-		sh menuAdministrador.sh
 	;;
 esac
 done
