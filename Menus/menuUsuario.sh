@@ -4,14 +4,13 @@ while test $seleccion -ne 5
 do
 tput sgr 0
 tput setab 7
-tput setaf 4
 tput civis
 clear
-echo "1. Reservar"
-echo "2. Denunciar"
-echo "3. Iniciar evento"
-echo "4. Cambiar clave"
-echo "5. Cerrar sesion"
+echo -e "\e[0;47;34m1. \e[0;47;32mReservar"
+echo -e "\e[0;47;34m2. \e[0;47;32mDenunciar"
+echo -e "\e[0;47;34m3. \e[0;47;32mIniciar evento"
+echo -e "\e[0;47;34m4. \e[0;47;32mCambiar clave"
+echo -e "\e[0;47;34m5. \e[0;47;32mCerrar sesion"
 read seleccion
 case $seleccion in
   1)
