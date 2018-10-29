@@ -2,19 +2,19 @@
 selector=1
 while test $selector -ne 0
 do
-	tput setab 9
-  	tput setaf 7
+	tput setab 7
 	clear
+        tput civis
 	tput cup 3 10
-	echo "Menu reservas" 	
+	echo -e "\e[0;47;34mMenu reservas" 	
 	tput cup 5 5
-	echo "1 - Ingresar reserva" 
+	echo -e "\e[0;47;34m1. \e[0;47;32mIngresar reserva" 
 	tput cup 7 5
-	echo "2 - Ver reservas"
+	echo -e "\e[0;47;34m2. \e[0;47;32mVer reservas"
 	tput cup 9 5
-	echo "3 - Eliminar reserva"
+	echo -e "\e[0;47;34m3. \e[0;47;32mEliminar reserva"
 	tput cup 11 5
-	echo "0 - Volver al menu principal"
+	echo -e "\e[0;47;34m0. \e[0;47;32mVolver al menu principal"
 	read selector
 	
 	case $selector in
@@ -27,8 +27,15 @@ do
 	;;
 	0) 
 	;;
-	*) echo "Entrada Invalida"
-	   selector=4
+	*) tput setaf 0	
+	tput setab 1 
+	clear		
+	echo "Entrada Invalida"
+	selector=4 
+	read -s pause
+	tput cnorm 
+	tput sgr 0
+	clear sh menuReservas.sh
 	;;
 
 	esac
