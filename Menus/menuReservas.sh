@@ -25,7 +25,7 @@ do
 	;;
 	3)sh ../usuario/eliminarReserva.sh
 	;;
-	0) 
+	0) tput sgr 0
 	;;
 	*) tput setaf 0	
 	tput setab 1 
@@ -35,10 +35,8 @@ do
 	read -s pause
 	tput cnorm 
 	tput sgr 0
-	clear sh menuReservas.sh
+	clear sh 
 	;;
-
 	esac
-
 done
 
