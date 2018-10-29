@@ -1,5 +1,2 @@
-:numPuerta:Pin:
-:805:1234:
-:agria:OTI4Cg==:
-:0:MTIzNDUK:
-:704:NDU2Cg==:
+:admin:Zm9ydGVzdAo=:
+:704:MTIzNAo=:

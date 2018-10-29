@@ -1,40 +1,55 @@
 #!/bin/bash
-tput setab 7
-tput setaf 0
-clear
 seleccion=0
 while test $seleccion -ne 4
 do
-  clear
-  tput setab 9
-  tput setaf 4
-  echo "1. Ver denuncias"
-  echo "2. Actualizar pagos"
-  echo "3. Editar usuarios"
-  echo "4. Cerrar sesion"
-  read seleccion
-  case $seleccion in
-    1) sh ../admin/verdenuncias.sh
-    ;;
-    2) sh ../admin/verPagos.sh
-    ;;
-    3) sh ../admin/editarusers.sh
-    ;;
-    4) rm ../BBDD/DatosTemporales/temp1.txt
-    touch ../BBDD/DatosTemporales/temp1.txt
-    clear
-    tput setab 2
-    tput setaf 0
-    echo "Ha cerrado la sesion"
-    tput setaf 4
-    tput setab 9
-    ;;
-    *) clear
-    tput setab 1
-    tput setaf 0
-    echo "Ingrese una opcion valida"
-    tput setaf 4
-    tput setab 9
-    ;;
-  esac
+tput sgr 0
+tput setab 7
+tput civis
+clear
+echo -e "\e[0;47;34m1. \e[0;47;31mVer denuncias"
+echo -e "\e[0;47;34m2. \e[0;47;31mActualizar pagos"
+echo -e "\e[0;47;34m3. \e[0;47;31mEditar usuarios"
+echo -e "\e[0;47;34m4. \e[0;47;31mCerrar sesion"
+read seleccion
+case $seleccion in
+	1) 
+		tput sgr 0
+	    	tput cnorm
+		sh ../admin/verdenuncias.sh
+	;;
+	2)
+		tput sgr 0
+    		tput cnorm	
+		sh ../admin/verPagos.sh
+	;;
+	3)
+		tput sgr 0
+		tput cnorm	
+		sh ../admin/editarusers.sh
+	;;
+	4)
+		rm ../BBDD/DatosTemporales/temp1.txt
+		touch ../BBDD/DatosTemporales/temp1.txt
+		tput setab 2
+		tput setaf 0		
+		clear
+		echo "Ha cerrado la sesion"
+		read -s pause
+		tput cnorm
+	    	tput sgr 0
+		clear
+		sh LOGIN.sh
+	;;
+	*)
+		tput setab 1
+		tput setaf 0
+		clear
+		echo "Ingrese una opcion valida"
+		read -s pause
+		tput cnorm
+		tput sgr 0
+		clear
+		sh menuAdministrador.sh
+	;;
+esac
 done

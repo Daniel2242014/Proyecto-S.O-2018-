@@ -45,6 +45,7 @@ case $seleccion in
     tput sgr 0
     tput cnorm
     clear
+    sh LOGIN.sh
   ;;
   *) 
     tput setab 1
@@ -54,6 +55,7 @@ case $seleccion in
     read -s pause
     tput sgr 0
     clear
+    sh menuUsuario.sh
   ;;
 esac
 done

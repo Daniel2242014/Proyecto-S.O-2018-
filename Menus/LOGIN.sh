@@ -27,14 +27,14 @@ read dpto
 tput cup 21
 echo "Clave:"
 tput cup 21 7
-read -s pin
-pinencrypt=`echo $pin| base64`
+read -s clave
+pinencrypt=`echo $clave| base64`
 tput setaf 4
 if test `grep ":$dpto:$pinencrypt:" ../BBDD/Tablas/datosLogin.txt| wc -l` -eq 1
 then	
 	echo $dpto> ../BBDD/DatosTemporales/temp1.txt
 	tput sgr 0
-	if test $dpto -eq 0
+	if test $dpto = "admin"
 	then
 		sh menuAdministrador.sh
 	else
