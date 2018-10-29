@@ -14,7 +14,7 @@ clear
 tput cup 1 20
 echo "Sistema de reservas"
 tput cup 4 2 
-echo "Año:"
+echo "Anio:"
 tput cup 6 2 
 echo "Mes (ej:4):"
 tput cup 8 2 
