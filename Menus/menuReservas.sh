@@ -4,6 +4,7 @@ while test $selector -ne 0
 do
 	tput setab 7
 	clear
+        tput civis
 	tput cup 3 10
 	echo -e "\e[0;47;34mMenu reservas" 	
 	tput cup 5 5
@@ -26,8 +27,15 @@ do
 	;;
 	0) 
 	;;
-	*) echo "Entrada Invalida"
-	   selector=4
+	*) tput setaf 0	
+	tput setab 1 
+	clear		
+	echo "Entrada Invalida"
+	selector=4 
+	read -s pause
+	tput cnorm 
+	tput sgr 0
+	clear sh menuReservas.sh
 	;;
 
 	esac
