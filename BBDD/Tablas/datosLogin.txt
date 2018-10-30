@@ -1,7 +1,3 @@
 :admin:Zm9ydGVzdAo=:
-<<<<<<< HEAD
 :704:MTIzNAo=:
 :agria:xd:
-=======
-:704:MTIzCg==:
->>>>>>> origin/master
