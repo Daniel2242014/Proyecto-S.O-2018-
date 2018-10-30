@@ -28,7 +28,7 @@ then
 	echo "Describa los daños" 
 	tput cup 10 0
 	read descripcion
-	numDenuncia=$[$(cat ../BBDD/Tablas/denuncias.txt|wc -l)+1]
+	numDenuncia=$[$(tail -n1 ../BBDD/Tablas/denuncias.txt|cut -d: -f2)+1]
 	
 	tput cup 8 30
 	tput setaf 7
