@@ -1,12 +1,14 @@
 #!/bin/bash
-tput setab 7
-tput setaf 0 
-clear
 sh ../admin/actualizarpagos.sh
 verificar=0
 numeroPuerta=0
 while test $verificar -eq 0
 do
+tput setab 7
+tput setaf 0 
+clear
+
+
 	verificar=0
 	tput cup 1 5 
 	tput setaf 1 
@@ -20,6 +22,15 @@ do
 	if test $(grep ":$numeroPuerta:" ../BBDD/Tablas/usuario.txt|wc -l) -eq 1
 	then 
 		verificar=1
+		tput cup 3 5 
+		tput setaf 7
+		tput setab 1
+		echo " Entrada incorrecta (salir=2) "
+		read fff 
+		if test $fff -eq 2
+		then 
+			exit
+		fi
 	fi
 done
 deuda=$(grep ":$numeroPuerta:" ../BBDD/Tablas/usuario.txt|cut -d: -f6)
