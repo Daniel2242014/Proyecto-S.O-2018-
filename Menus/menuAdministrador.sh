@@ -6,10 +6,10 @@ tput sgr 0
 tput setab 7
 tput civis
 clear
-echo -e "\e[0;47;34m1. \e[0;47;31mVer denuncias"
-echo -e "\e[0;47;34m2. \e[0;47;31mActualizar pagos"
-echo -e "\e[0;47;34m3. \e[0;47;31mEditar usuarios"
-echo -e "\e[0;47;34m4. \e[0;47;31mCerrar sesion"
+echo -e "\e[0;47;34m1. \e[0;47;30mVer denuncias"
+echo -e "\e[0;47;34m2. \e[0;47;30mActualizar pagos"
+echo -e "\e[0;47;34m3. \e[0;47;30mEditar usuarios"
+echo -e "\e[0;47;34m4. \e[0;47;30mCerrar sesion"
 read seleccion
 case $seleccion in
 	1) 

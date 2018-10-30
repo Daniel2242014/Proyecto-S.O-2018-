@@ -9,7 +9,7 @@ do
 while test $selecion -eq 1 2> /dev/null
 do
 tput setab 7
-tput setaf 8
+tput setaf 0
 clear
 tput cup 1 20
 echo "Sistema de reservas"
@@ -27,7 +27,7 @@ tput cup 8 50
 echo "Duracion (N° horas):"
 
 
-	tput setaf 8
+	tput setaf 0
 	tput cup 4 8
 	read anio
 	tput cup 6 14
@@ -40,20 +40,28 @@ echo "Duracion (N° horas):"
 	then
 		tput cup 11 22		
 		tput setab 1	
-		echo "¿Quiere cambiar el dia? (0=no, 1=si)"
-		tput cup 11 61
-		tput setaf 8
+		echo "¿Quiere cambiar el dia? (0=no, 1=si 2=salir al menu)"
+		tput cup 11 82
+		tput setaf 0
 		tput setab 7
 		read selecion
+		if test $selecion -eq 2
+		then	
+			exit
+		fi
 		tput cup 11 22
 		echo "                                                              "
 	else
 		tput cup 11 22	
 		tput setab 1	
-		echo "Entrada invalidad, toque enter para continuar"
-		tput cup 11 67
+		echo "Entrada invalidad, toque enter para continuar (2=menu)"
+		tput cup 11 85
 		tput setab 7
-		read /dev/null
+		read fff
+		if test $fff -eq 2
+		then	 
+			exit	
+		fi
 		tput cup 11 22
 		echo "                                                              "
 		
@@ -113,8 +121,7 @@ done
 					duracion=$(grep "$var3" ../BBDD/DatosTemporales/tempReserba.txt|cut -d: -f9)
 					horaInicio=$(grep "$var3" ../BBDD/DatosTemporales/tempReserba.txt|cut -d: -f7)
 					minutoInicio=$(grep "$var3" ../BBDD/DatosTemporales/tempReserba.txt|cut -d: -f8)
-					tput cup 22 1 
-					echo "$horas $duracion $horaInicio $minutoInicio" 					
+					tput cup 22 1 					
 		
 					if ((test $horas -lt $[$horaInicio+$duracion]||(test $horas -eq $[$horaInicio+$duracion]&& test $minutoInicio -eq 0 && test $var2 -eq 0))||(test $horas -le $[$horaInicio+$duracion] && test $[$var2*15] -lt $minutoInicio))&&(test $horas -gt $horaInicio || (test $horas  -ge $horaInicio && test $[$var2*15] -ge $minutoInicio)) 
 					then 
@@ -132,7 +139,7 @@ done
 	
 				done									
 			fi			
-			tput setaf 8			
+			tput setaf 0			
 			tput cup 18 $largo			
 			if test $var2 -eq 0
 			then 
@@ -151,7 +158,7 @@ done
 			
 		done
 			
-		tput setaf 8
+		tput setaf 0
 		tput setab 7	
 		tput cup 20 $[$largo-3]
 		echo "$horas"
@@ -159,7 +166,7 @@ done
 	done
 	
 	tput setab 7
-	tput setaf 8
+	tput setaf 0
 	tput cup 20 $[$largo+1]
 	echo "$[$var-16]"
 
@@ -172,7 +179,7 @@ echo "¿Quiere cambiar la fecha?(1= si 0 = no)"
 read selecion
 tput cup 11 22	
 tput setab 7
-tput setaf 8
+tput setaf 0
 echo "                                                                                      "
 done
 
@@ -246,10 +253,15 @@ do
 	tput setaf 7
 	if test $validacion -eq 0
 	then
-		echo "Datos incorrectos"
+		echo "Datos incorrectos (2=ir al menu)"
 		tput setab 7		
 		tput setaf 7
-		read null
+		read fff
+		if test $fff -eq 2
+		then	 
+			exit	
+		fi
+		
 	else
 		echo "Datos correctos, ¿Confirma la hora?(0=no, 1=si 2=volver a empezar)"
 		tput setab 7		
@@ -305,6 +317,7 @@ then
 			tput setab 1
 			tput setaf 7
 			echo "Pago completado"
+			read fff
 			tput cup 11 25	
 			tput setab 7
 			tput setaf 7
@@ -334,6 +347,7 @@ then
 				tput setab 1
 				tput setaf 7
 				echo "Pago completado"
+				read fff
 				tput cup 11 25	
 				tput setab 7
 				tput setaf 7
@@ -361,6 +375,8 @@ then
 					then 
 						tput cup 11 25	
 						echo "Dato incorecto"
+						read fff
+						echo "		    "
 						verificadorNumCuota=0
 					fi
 								
@@ -383,6 +399,7 @@ then
 				tput setab 1
 				tput setaf 7
 				echo "Entrada incorrecta"
+				read fff
 				verificado=0
 				;;
 			esac
