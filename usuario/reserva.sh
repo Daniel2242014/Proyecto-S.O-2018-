@@ -39,7 +39,7 @@ echo -e "\e[0;47;30mDuracion (\e[0;47;34mN° horas\e[0;47;30m):"
 		tput cup 11 22		
 		tput setaf 1	
 		tput civis
-		echo "¿Quiere cambiar el dia? (0.No/ 1.Si/ 2.Salir al menu)"
+		echo "Quiere cambiar el dia? (0.No/ 1.Si/ 2.Salir al menu)"
 		tput cup 11 82
 		read selecion
 		tput cnorm
@@ -176,7 +176,7 @@ done
 tput cup 11 22	
 tput setaf 1
 tput civis
-echo "¿Quiere cambiar la fecha?(1.Si/ 0.No)"
+echo "Quiere cambiar la fecha?(1.Si/ 0.No)"
 read selecion
 tput cnorm
 tput cup 11 22	
@@ -268,7 +268,7 @@ do
 	else
 		tput civis
 		tput setaf 1
-		echo "Datos correctos, ¿Confirma la hora? (0.No/ 1.Si/ 2.Volver a empezar)"
+		echo "Datos correctos, confirma la hora? (0.No/ 1.Si/ 2.Volver a empezar)"
 		tput setaf 0	
 		read validacion
 		tput cnorm
@@ -310,7 +310,7 @@ then
 			tput cup 11 2	
 			tput setaf 1
 			tput civis
-			echo "Al tener deuda debera pagar en contado el salon, toque cualuier tecla para continuar "		
+			echo "Al tener deuda debera pagar en contado el salon, toque cualquier tecla para continuar "		
 			read fff
 			tput cnorm			
 			tput cup 11 5	
