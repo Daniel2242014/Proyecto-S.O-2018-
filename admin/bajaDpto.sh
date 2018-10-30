@@ -62,10 +62,13 @@ done
 
 for tupla in `cat ../BBDD/Tablas/denuncias.txt`
 do
-	dptostr=`echo $tupla|cut -d":" -f3`
-	if test "$dptostr" != "$dpto"
+	dptostr=`echo $tupla|cut -d":" -f3`	
+	dptostr2=`echo $tupla|cut -d":" -f4`
+	if test "$dptostr" != "$dpto" || "$dptostr2" != "$dpto"
 	then
-		echo $tupla>> ../BBDD/Tablas/denunciasAUX.txt 
+		archivo1=`echo $tupla|cut -d":" -f2`	
+		rm ../BBDD/denuncias/$archivo1
+		echo $tupla>> ../BBDD/Tablas/denunciasAUX.txt
 	fi
 done
 

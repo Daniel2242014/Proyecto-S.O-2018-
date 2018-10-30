@@ -8,7 +8,6 @@ tput setab 7
 tput setaf 0 
 clear
 
-
 	verificar=0
 	tput cup 1 5 
 	tput setaf 1 
@@ -26,7 +25,7 @@ clear
 		tput setaf 7
 		tput setab 1
 		echo " Entrada incorrecta (salir=2) "
-		read fff 
+		read fff
 		if test $fff -eq 2
 		then 
 			exit
@@ -52,7 +51,9 @@ do
 
 done
 
-if test $mes -eq $(date +%m) && test $anio -eq $(date +%Y)
+mess=$(date +%m)
+anioo=$(date +%Y)
+if test $mes -eq $mess && test $anio -eq $anioo
 then 
 gastosComunes=2000
 fi

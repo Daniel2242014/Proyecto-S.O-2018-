@@ -12,21 +12,19 @@ tput setab 7
 tput setaf 0
 clear
 tput cup 1 20
-echo "Sistema de reservas"
+echo -e "\e[0;47;34mSistema de reservas"
 tput cup 4 2 
-echo "Anio:"
+echo -e "\e[0;47;30mAnio:"
 tput cup 6 2 
-echo "Mes (ej:4):"
+echo -e "\e[0;47;30mMes (\e[0;47;34mej:4\e[0;47;30m):"
 tput cup 8 2 
-echo "Dia:"
+echo -e "\e[0;47;30mDia:"
 tput cup 4 50
-echo "Hora:"
+echo -e "\e[0;47;30mHora:"
 tput cup 6 50 
-echo "Minuto:"
+echo -e "\e[0;47;30mMinuto:"
 tput cup 8 50
-echo "Duracion (N° horas):"
-
-
+echo -e "\e[0;47;30mDuracion (\e[0;47;34mN° horas\e[0;47;30m):"
 	tput setaf 0
 	tput cup 4 8
 	read anio
@@ -39,12 +37,12 @@ echo "Duracion (N° horas):"
 	if cal $dia $mes $anio 2> /dev/null && (test $anio -gt $(date +%Y) || (test $anio -eq $(date +%Y) && ((test $mes -ge $(date +%m) && test $dia -ge $(date +%d))|| test $mes -gt $(date +%m))))
 	then
 		tput cup 11 22		
-		tput setab 1	
-		echo "¿Quiere cambiar el dia? (0=no, 1=si 2=salir al menu)"
+		tput setaf 1	
+		tput civis
+		echo "¿Quiere cambiar el dia? (0.No/ 1.Si/ 2.Salir al menu)"
 		tput cup 11 82
-		tput setaf 0
-		tput setab 7
 		read selecion
+		tput cnorm
 		if test $selecion -eq 2
 		then	
 			exit
@@ -53,11 +51,13 @@ echo "Duracion (N° horas):"
 		echo "                                                              "
 	else
 		tput cup 11 22	
-		tput setab 1	
-		echo "Entrada invalidad, toque enter para continuar (2=menu)"
+		tput setaf 1
+		tput civis	
+		echo "Entrada invalida, toque enter para continuar (2.Ir al menu)"
 		tput cup 11 85
 		tput setab 7
 		read fff
+		tput cnorm
 		if test $fff -eq 2
 		then	 
 			exit	
@@ -86,6 +86,7 @@ done
 	tput setaf 3
 	tput cup 15 15
 	echo "Ocupado por limpieza"
+	tput setaf 0
 	largo=1
 	horas=0
 	elementos=0
@@ -173,10 +174,11 @@ done
 #Ingreso de reservas 
 
 tput cup 11 22	
-tput setab 1
-tput setaf 7
-echo "¿Quiere cambiar la fecha?(1= si 0 = no)"
+tput setaf 1
+tput civis
+echo "¿Quiere cambiar la fecha?(1.Si/ 0.No)"
 read selecion
+tput cnorm
 tput cup 11 22	
 tput setab 7
 tput setaf 0
@@ -249,27 +251,28 @@ do
 		done
 	fi	
 	tput cup 11 10	
-	tput setab 1
-	tput setaf 7
+	tput setaf 1
 	if test $validacion -eq 0
-	then
-		echo "Datos incorrectos (2=ir al menu)"
+	then	
+		tput civis
+		echo "Datos incorrectos (2.Ir al menu)"
 		tput setab 7		
-		tput setaf 7
+		tput setaf 0
 		read fff
+		tput cnorm
 		if test $fff -eq 2
 		then	 
 			exit	
 		fi
 		
 	else
-		echo "Datos correctos, ¿Confirma la hora?(0=no, 1=si 2=volver a empezar)"
-		tput setab 7		
-		tput setaf 7		
+		tput civis
+		tput setaf 1
+		echo "Datos correctos, ¿Confirma la hora? (0.No/ 1.Si/ 2.Volver a empezar)"
+		tput setaf 0	
 		read validacion
+		tput cnorm
 	fi 
-	tput setab 7		
-	tput setaf 8
 	tput cup 11 10
 	echo  "                                                                   "
 done
@@ -282,12 +285,13 @@ then
 	then
 		
 		tput cup 11 5	
-		tput setab 1
-		tput setaf 7
+		tput setaf 1
+		tput civis
 		echo "El primer uso del salon es grais, pulse cualquier tecla para continuar"
 		read fff
+		tput cnorm
 		tput cup 11 5	
-		tput setab 7
+		tput setaf 0
 		echo "                                                                      "
 		echo "" > ../BBDD/DatosTemporales/temp2.txt
 		for var6 in $(cat ../BBDD/Tablas/usuario.txt)
@@ -304,23 +308,22 @@ then
 		if test $(grep $numPuerta ../BBDD/Tablas/usuario.txt|cut -d: -f6) -gt 0
 		then
 			tput cup 11 2	
-			tput setab 1
-			tput setaf 7
-			echo "Al tener deuda debera pagar en contado el salon, toque cualuier tecla para continuar "
-			tput setaf 7			
-			read fff			
+			tput setaf 1
+			tput civis
+			echo "Al tener deuda debera pagar en contado el salon, toque cualuier tecla para continuar "		
+			read fff
+			tput cnorm			
 			tput cup 11 5	
-			tput setab 7
-			tput setaf 7                          
+			tput setaf 0                          
 			echo "                                                                                      "
 			tput cup 11 2	
-			tput setab 1
-			tput setaf 7
+			tput setaf 1
+			tput civis
 			echo "Pago completado"
 			read fff
+			tput cnorm
 			tput cup 11 25	
-			tput setab 7
-			tput setaf 7
+			tput setaf 0
 			echo "               "
 
 		else
@@ -329,28 +332,28 @@ then
 			do 
 			verificado=1	
 			tput cup 11 10	
-			tput setab 1
-			tput setaf 7
-			echo "Lo pagara en contado o en cuotas? (0=contado, 1=en cuotas)"
-			tput cup 11 69	
+			tput civis				
+			tput setaf 1
 			tput setab 7
-			tput setaf 8			
+			echo "Lo pagara en contado o en cuotas? (0.Contado/ 1.En cuotas)"
+			tput cup 11 69			
 			read tipoPago
+			tput cnorm
 			tput cup 11 10	
-			tput setab 7
-			tput setaf 7			
+			tput setaf 0		
 			echo "                                                            "
 			
 			case $tipoPago in
 				0)
 				tput cup 11 25	
-				tput setab 1
-				tput setaf 7
+				tput civis					
+				tput setaf 1
+				tput setab 7
 				echo "Pago completado"
 				read fff
+				tput cnorm
 				tput cup 11 25	
-				tput setab 7
-				tput setaf 7
+				tput setaf 0
 				echo "               "	
 				;;
 			
@@ -360,22 +363,26 @@ then
 				do
 					verificadorNumCuota=1
 					tput cup 11 25	
-					tput setab 1
-					tput setaf 7
-					echo "Cuantas coutas (DEL 1-6)"	
+					tput setaf 1
+					tput civis
+					tput setab 7
+					echo "Cuantas coutas (1 a 6 cuotas)"	
 					tput cup 11 51
-					tput setab 7
-					tput setaf 8
+					tput setaf 0
 					read montoCuota
+					tput cnorm
 					tput cup 11 25	
-					tput setab 7
-					tput setaf 7
+					tput setaf 0
 					echo "                         "
 					if test $montoCuota -gt 6 || test $montoCuota -lt 1
 					then 
 						tput cup 11 25	
+						tput civis 
+						tput setaf 1
 						echo "Dato incorecto"
 						read fff
+						tput cnorm
+						tput setaf 0
 						echo "		    "
 						verificadorNumCuota=0
 					fi
@@ -396,10 +403,12 @@ then
 			
 				*)
 				tput cup 20 10	
-				tput setab 1
-				tput setaf 7
+				tput setaf 1
+				tput civis
 				echo "Entrada incorrecta"
 				read fff
+				tput setaf 0
+				tput cnorm
 				verificado=0
 				;;
 			esac
@@ -409,13 +418,18 @@ then
 
 	echo :$numPuerta:$[$(tail -n1 ../BBDD/Tablas/reserva.txt| cut -d: -f3)+1]:$dia:$mes:$anio:$hora:$minuto:$duracion:  >>../BBDD/Tablas/reserva.txt
 	tput cup 11 20	
-	tput setab 1
-	tput setaf 7
+	tput setaf 1
+	tput civis
+	tput setab 7
 	echo "Reserva registrada " 
 	read fff
+	tput cnorm
+	tput setaf 0
 	
 else
+	tput setaf 1
 	echo "Adios"
+	tput sgr0
 fi
 
 
