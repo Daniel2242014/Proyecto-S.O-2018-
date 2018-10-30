@@ -6,11 +6,11 @@ tput sgr 0
 tput setab 7
 tput civis
 clear
-echo -e "\e[0;47;34m1. \e[0;47;32mReservar"
-echo -e "\e[0;47;34m2. \e[0;47;32mDenunciar"
-echo -e "\e[0;47;34m3. \e[0;47;32mIniciar evento"
-echo -e "\e[0;47;34m4. \e[0;47;32mCambiar clave"
-echo -e "\e[0;47;34m5. \e[0;47;32mCerrar sesion"
+echo -e "\e[0;47;34m1. \e[0;47;30mReservar"
+echo -e "\e[0;47;34m2. \e[0;47;30mDenunciar"
+echo -e "\e[0;47;34m3. \e[0;47;30mIniciar evento"
+echo -e "\e[0;47;34m4. \e[0;47;30mCambiar clave"
+echo -e "\e[0;47;34m5. \e[0;47;30mCerrar sesion"
 read seleccion
 case $seleccion in
   1)
