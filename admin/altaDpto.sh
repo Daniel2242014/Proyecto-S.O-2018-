@@ -45,7 +45,7 @@ then
 	tput cup 4 0
 	echo -e "\e[0;47;34mIngrese su Apellido:"
 	tput cup 0 18
-	read clave
+	read -s clave
 	tput cup 2 20
 	read nom
 	tput cup 4 22

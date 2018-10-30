@@ -2,3 +2,15 @@
 :nombre:apellido:numPuerta:UsoSalon:Deuda:UltimoMesPgo:UltimoAñoPago:
 :pepe:jjue:702:SI:26000:10:2018:
 :Agustin:Perez:704:SI:0:11:2018:
+:Pedro:Martinez:105:SI:0:11:2018
+:Jacinto:Gutierrez:201:NO:0:11:2018:
+:Antonio:Solis:205:NO:0:11:2018:
+:Maria:Gimenez:301:SI:0:11:2018
+:Guillermo:Diaz:305:NO:0:11:2018:
+:Nestor:Pereira:401:NO:0:11:2018:
+:Ana:Silva:405:SI:0:11:2018
+:Pablo:Perez:501:NO:0:11:2018:
+:Cristina:Gomez:505:NO:0:11:2018:
+:Maria:Fernandez:601:NO:0:11:2018:
+:Omar:Silvera:605:NO:0:11:2018:
+:Gaston:Gonzalez:701:NO:0:11:2018:
