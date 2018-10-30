@@ -1,19 +1,25 @@
 #!/bin/bash
+sh ../admin/actualizarpagos.sh
 tput setab 7
 tput setaf 0 
-clear
-sh ../admin/actualizarpagos.sh
 verificar=0
 numeroPuerta=0
 while test $verificar -eq 0
 do
+	tput setab 7
+	tput setaf 0 
+	clear
 	verificar=0
 	tput cup 1 5 
 	tput setaf 1 
-	echo "Ingrese el numero de puerta:"
-	tput cup 1 35
+	echo "Ingrese el numero de puerta (salir=-1) :"
+	tput cup 1 45
 	tput setaf 0 
 	read numeroPuerta
+	if test $numeroPuerta -eq -1
+	then 
+		exit
+	fi
 	tput cup 1 5 
 	tput setaf 7 
  
