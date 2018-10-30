@@ -55,6 +55,7 @@ case $seleccion in
 		read -s pause
 		tput cnorm
 	    	tput sgr 0
+		seleccion=0
 		clear
 		exit
 	;;

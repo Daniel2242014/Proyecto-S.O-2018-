@@ -1,6 +1,6 @@
 #!/bin/bash
-seleccion=0
-while test $seleccion -ne 5
+seleccion=4
+while test $seleccion -ne 0
 do
 tput sgr 0
 tput setab 7
@@ -10,7 +10,7 @@ echo -e "\e[0;47;34m1. \e[0;47;30mReservar"
 echo -e "\e[0;47;34m2. \e[0;47;30mDenunciar"
 echo -e "\e[0;47;34m3. \e[0;47;30mIniciar evento"
 echo -e "\e[0;47;34m4. \e[0;47;30mCambiar clave"
-echo -e "\e[0;47;34m5. \e[0;47;30mCerrar sesion"
+echo -e "\e[0;47;34m0. \e[0;47;30mCerrar sesion"
 read seleccion
 case $seleccion in
   1)
@@ -33,7 +33,7 @@ case $seleccion in
     tput cnorm
     sh ../usuario/cambiarpass.sh
   ;;
-  5)
+  0)
     tput setab 2
     tput setaf 0
     clear
@@ -43,6 +43,7 @@ case $seleccion in
     read -s pause
     tput sgr 0
     tput cnorm
+    seleccion=0
     clear
   ;;
   *) 
