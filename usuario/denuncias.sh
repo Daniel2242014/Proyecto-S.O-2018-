@@ -43,7 +43,6 @@ then
 	echo ":$numDenuncia:$denunciado:$numDenunciante:$(date +%d)/$(date +%m)/$(date +%Y):-2:" >>../BBDD/Tablas/denuncias.txt
 	touch ../BBDD/denuncias/$numDenuncia
 	echo $descripcion > ../BBDD/denuncias/$numDenuncia
-read fff
 	
 else 
 	tput cup 5 2

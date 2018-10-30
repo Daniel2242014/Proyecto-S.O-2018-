@@ -141,8 +141,6 @@ do
 			done
 			cat ../BBDD/DatosTemporales/tempVerDenuncias > ../BBDD/Tablas/usuario.txt
 			echo "" > ../BBDD/DatosTemporales/tempVerDenuncias
-
-			read fff
 		else	
 			tput cup $[$contadorFilas+2] 22			
 			tput setab 1			

@@ -40,8 +40,16 @@ if test $dpto -eq $dpto 2>/dev/null
 then
 	clear
 	echo -e "\e[0;47;34mIngrese su clave:"
+	tput cup 2 0
+	echo -e "\e[0;47;34mIngrese su Nombre:"
+	tput cup 4 0
+	echo -e "\e[0;47;34mIngrese su Apellido:"
 	tput cup 0 18
 	read clave
+	tput cup 2 20
+	read nom
+	tput cup 4 22
+	read apl
 	#Verifica que se haya ingresado una clave
 	if test -z $clave
 	then
@@ -59,6 +67,7 @@ then
 	clavencrypt=`echo $clave| base64`
 	#Se guarda en el archivo	
 	echo ":$dpto:$clavencrypt:">> ../BBDD/Tablas/datosLogin.txt
+	echo :$nom:$apl:$dpto:NO:0:$(date -d "1 month " +%m):$(date -d "1 month " +%Y): >> ../BBDD/Tablas/usuario.txt
 	tput setab 2
 	tput setaf 0
 	clear

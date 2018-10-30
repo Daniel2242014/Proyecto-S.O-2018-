@@ -8,7 +8,7 @@ tput civis
 clear
 echo -e "\e[0;47;34m1. \e[0;47;30mVer denuncias"
 echo -e "\e[0;47;34m2. \e[0;47;30mActualizar pagos"
-echo -e "\e[0;47;34m3. \e[0;47;30mEditar usuarios"
+echo -e "\e[0;47;34m3. \e[0;47;30mDenuncia Por roptura del salon"
 echo -e "\e[0;47;34m4. \e[0;47;30mHabilitar apartamento"
 echo -e "\e[0;47;34m5. \e[0;47;30mDeshabilitar apartamento"
 echo -e "\e[0;47;34m6. \e[0;47;30mListar apartamentos habilitados"
@@ -28,7 +28,7 @@ case $seleccion in
 	3)
 		tput sgr 0
 		tput cnorm	
-		sh ../admin/editarusers.sh
+		sh ../admin/denunciasPorRoptura.sh
 	;;
 	4)
 		tput sgr 0
