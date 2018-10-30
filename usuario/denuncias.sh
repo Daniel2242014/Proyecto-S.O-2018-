@@ -25,7 +25,7 @@ then
 	echo "ingrese una descripcion"
 	tput cup 8 0
 	read descripcion
-	numDenuncia=$[$(cat ../BBDD/Tablas/denuncias.txt|wc -l)+1]
+	numDenuncia=$[$(tail -n1 ../BBDD/Tablas/denuncias.txt|cut -d: -f2)+1]
 
 	#Escribe Datos
 	numDenunciante=$(cat ../BBDD/DatosTemporales/temp1.txt)
