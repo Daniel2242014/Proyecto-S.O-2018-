@@ -274,7 +274,7 @@ do
 		tput cnorm
 	fi 
 	tput cup 11 10
-	echo  "                                                                   "
+	echo  "                                                                               "
 done
 
 if test $validacion -eq 1
@@ -313,18 +313,18 @@ then
 			echo "Al tener deuda debera pagar en contado el salon, toque cualquier tecla para continuar "		
 			read fff
 			tput cnorm			
-			tput cup 11 5	
+			tput cup 11 2	
 			tput setaf 0                          
-			echo "                                                                                      "
+			echo "                                                                                           "
 			tput cup 11 2	
 			tput setaf 1
 			tput civis
 			echo "Pago completado"
 			read fff
 			tput cnorm
-			tput cup 11 25	
+			tput cup 11 2
 			tput setaf 0
-			echo "               "
+			echo "                  "
 
 		else
 			verificado=0
@@ -336,12 +336,12 @@ then
 			tput setaf 1
 			tput setab 7
 			echo "Lo pagara en contado o en cuotas? (0.Contado/ 1.En cuotas)"
-			tput cup 11 69			
+			tput cup 11 75		
 			read tipoPago
 			tput cnorm
 			tput cup 11 10	
 			tput setaf 0		
-			echo "                                                            "
+			echo "                                                              "
 			
 			case $tipoPago in
 				0)
@@ -367,13 +367,13 @@ then
 					tput civis
 					tput setab 7
 					echo "Cuantas coutas (1 a 6 cuotas)"	
-					tput cup 11 51
+					tput cup 11 54
 					tput setaf 0
 					read montoCuota
 					tput cnorm
 					tput cup 11 25	
 					tput setaf 0
-					echo "                         "
+					echo "                              "
 					if test $montoCuota -gt 6 || test $montoCuota -lt 1
 					then 
 						tput cup 11 25	
@@ -383,6 +383,7 @@ then
 						read fff
 						tput cnorm
 						tput setaf 0
+						tput cup 11 25
 						echo "		    "
 						verificadorNumCuota=0
 					fi
@@ -428,7 +429,6 @@ then
 	
 else
 	tput setaf 1
-	echo "Adios"
 	tput sgr0
 fi
 
